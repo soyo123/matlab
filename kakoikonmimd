@@ -1,0 +1,59 @@
+# matlab
+function [xArg,yArg] = kakoikonmi(x1,h,eps,x,dx)
+%囲い込み
+%
+dx1=dfun(x1,eps);
+% if dx1==0
+%     x1=x1+eps;
+%     dx1=dfun(x1,eps);
+% end
+%判断h方向    
+if dx1>0
+    h=-h;
+end
+%求x2
+x2=x1+h;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+y1=dun(x1,x,dx);
+y2=dun(x2,x,dx);
+
+% fprintf('x1=%f\n',x1);
+% fprintf('y1=%f\n',y1);
+% fprintf('x2=%f\n',x2);
+% fprintf('y2=%f\n',y2);
+while y2>y1
+    h=h/2;
+    x2=x1+h;
+    y2=dun(x2,x,dx);
+
+%     fprintf('x2=%f\n',x2);
+%     fprintf('y2=%f\n',y2);
+end
+%求xk
+h=2*h;
+x3=x2+h;
+y3=dun(x3,x,dx);
+% fprintf('x3=%f\n',x3);
+% fprintf('y3=%f\n',y3);
+while y3<=y2
+    %k:=k+1
+    x1=x2;
+    y1=y2;%もとは間違った%%%%%%%%%%%%%%%%%%%%%
+    x2=x3;
+    y2=y3;
+    %計算新xk
+    h=2*h;
+    x3=x3+h;
+    y3=dun(x3,x,dx);
+%     fprintf('x3=%f\n',x3);
+%     fprintf('y3=%f\n',y3);
+end
+%x1
+%x2
+%x3
+xArg=[x1,x2,x3];%%%%%%%%%%%%%%%
+yArg=[y1,y2,y3];%%%%%%%%%%%%%%%%%%%%
+
+% fprintf('xArg=%f\n',xArg);
+% fprintf('yArg=%f\n',yArg);
+end
+
